@@ -5,10 +5,10 @@ class Resolvers::CreatePost < GraphQL::Function
 
   type Types::PostType
 
-  def call(obj, args, _ctx)
+  def call(_obj, args, _ctx)
     Post.create!(
       title: args[:title],
-      content: args[:content]
+      content: args[:content],
     )
   end
 
