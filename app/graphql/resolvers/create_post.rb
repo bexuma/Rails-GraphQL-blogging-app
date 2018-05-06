@@ -5,10 +5,15 @@ class Resolvers::CreatePost < GraphQL::Function
 
   type Types::PostType
 
-  def call(_obj, args, _ctx)
+  def call(obj, args, ctx)
+    if ctx[:current_user].blank?
+      raise GraphQL::ExecutionError.new("Authentication required")
+    end
+
     Post.create!(
       title: args[:title],
       content: args[:content],
+      user: ctx[:current_user]
     )
   end
 
