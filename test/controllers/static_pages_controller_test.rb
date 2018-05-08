@@ -2,7 +2,7 @@ require 'test_helper'
 
 class StaticPagesControllerTest < ActionDispatch::IntegrationTest
   test "should get homepage" do
-    get static_pages_homepage_url
+    get root_path
     assert_response :success
   end
 
